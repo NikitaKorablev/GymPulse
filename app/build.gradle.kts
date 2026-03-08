@@ -21,13 +21,12 @@ kotlin {
 }
 
 android {
-    // TODO: Set Namespace
-    namespace = "com.debk007.template"
+    namespace = "ru.app"
     compileSdk = 36
 
     defaultConfig {
         // TODO: Set Package Name
-        applicationId = "com.debk007.template"
+        applicationId = "ru.app"
         minSdk = 24
         targetSdk = 36
         versionCode = 1
