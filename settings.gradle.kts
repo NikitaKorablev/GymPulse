@@ -16,4 +16,4 @@ dependencyResolutionManagement {
 rootProject.name = "GymPulse"
 include(":app")
 include(":feature:training_list")
-include(":core")
+include(":core:database")
