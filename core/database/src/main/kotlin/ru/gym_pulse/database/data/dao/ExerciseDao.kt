@@ -8,7 +8,7 @@ import ru.gym_pulse.database.data.entities.ExerciseEntity
 
 @Dao
 interface ExerciseDao {
-    @Query("Select * From exerciseentity where id = :id")
+    @Query("Select * From exercises where id = :id")
     suspend fun getExercise(id: Int): ExerciseEntity?
 
     @Insert(onConflict = OnConflictStrategy.ABORT)
