@@ -13,8 +13,10 @@ dependencyResolutionManagement {
     }
 }
 
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 rootProject.name = "GymPulse"
 include(":app")
 include(":feature:training_list")
 include(":core:database")
 include(":core:domain")
+include(":core:data")

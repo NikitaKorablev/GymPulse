@@ -1,18 +1,18 @@
-package ru.gym_pulse.database.di
+package ru.gym_pulse.data.di
 
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import ru.gym_pulse.data.repository.ExerciseRepositoryImpl
+import ru.gym_pulse.data.repository.TrainingRepositoryImpl
+import ru.gym_pulse.data.repository.WorkoutRepositoryImpl
 import ru.gym_pulse.database.data.dao.ExerciseDao
 import ru.gym_pulse.database.data.dao.TrainingDao
 import ru.gym_pulse.database.data.dao.WorkoutDao
-import ru.gym_pulse.database.data.datasource.ExerciseSourceImpl
-import ru.gym_pulse.database.data.datasource.TrainingSourceImpl
-import ru.gym_pulse.database.data.datasource.WorkoutSourceImpl
-import ru.gym_pulse.database.domain.datasource.ExerciseSource
-import ru.gym_pulse.database.domain.datasource.TrainingSource
-import ru.gym_pulse.database.domain.datasource.WorkoutSource
+import ru.gym_pulse.domain.repository.ExerciseRepository
+import ru.gym_pulse.domain.repository.TrainingRepository
+import ru.gym_pulse.domain.repository.WorkoutRepository
 import javax.inject.Singleton
 
 @Module
@@ -22,7 +22,7 @@ class DIModules {
     @Singleton
     fun provideExerciseSource(
         exerciseDao: ExerciseDao
-    ): ExerciseSource = ExerciseSourceImpl(
+    ): ExerciseRepository = ExerciseRepositoryImpl(
         exerciseDao
     )
 
@@ -30,7 +30,7 @@ class DIModules {
     @Singleton
     fun provideTrainingSource(
         trainingDao: TrainingDao
-    ): TrainingSource = TrainingSourceImpl(
+    ): TrainingRepository = TrainingRepositoryImpl(
         trainingDao
     )
 
@@ -38,7 +38,7 @@ class DIModules {
     @Singleton
     fun provideWorkoutSource(
         workoutDao: WorkoutDao
-    ): WorkoutSource = WorkoutSourceImpl(
+    ): WorkoutRepository = WorkoutRepositoryImpl(
         workoutDao
     )
 }

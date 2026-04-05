@@ -1,9 +1,11 @@
 plugins {
     alias(libs.plugins.android.library)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
-    namespace = "ru.gym_pulse.training_list"
+    namespace = "ru.gym_pulse.data"
     compileSdk {
         version = release(36)
     }
@@ -31,8 +33,12 @@ android {
 }
 
 dependencies {
+    implementation(projects.core.database)
     implementation(projects.core.domain)
-    implementation(projects.core.data)
+
+    // Dagger-Hilt
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
 
     implementation(libs.core.ktx)
     implementation(libs.androidx.appcompat)

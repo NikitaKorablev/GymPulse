@@ -1,16 +1,16 @@
-package ru.gym_pulse.database.data.datasource
+package ru.gym_pulse.data.repository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.gym_pulse.database.data.dao.WorkoutDao
 import ru.gym_pulse.database.data.entities.WorkoutEntity
-import ru.gym_pulse.database.domain.datasource.WorkoutSource
-import ru.gym_pulse.database.model.Workout
+import ru.gym_pulse.domain.model.Workout
+import ru.gym_pulse.domain.repository.WorkoutRepository
 import javax.inject.Inject
 
-class WorkoutSourceImpl @Inject constructor(
+class WorkoutRepositoryImpl @Inject constructor(
     val workoutDao: WorkoutDao
-) : WorkoutSource {
+) : WorkoutRepository {
     override suspend fun get(id: Int): Workout?
     = withContext(Dispatchers.IO) {
         workoutDao.get(id)?.toDomain()

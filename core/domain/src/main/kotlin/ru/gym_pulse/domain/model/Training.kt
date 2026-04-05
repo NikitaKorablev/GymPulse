@@ -1,4 +1,4 @@
-package ru.gym_pulse.database.model
+package ru.gym_pulse.domain.model
 
 import java.time.LocalDateTime
 
