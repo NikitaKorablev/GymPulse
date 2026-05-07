@@ -1,52 +1,124 @@
+![Language](https://img.shields.io/github/languages/top/NikitaKorablev/kotlin-android-mvvm-template?color=B125EA&logo=kotlin&style=social)&nbsp;&nbsp;
+[![Owner](https://img.shields.io/badge/by-NikitaKorablev-brightgreen?logo=github&style=social)](https://github.com/NikitaKorablev)&nbsp;&nbsp;
+
+# GymPulse — Kotlin Android MVVM Template
+
+Android-приложение на **Kotlin** с использованием **Jetpack Compose**, **MVVM-архитектуры**, **многомодульной структуры** и полной настройкой **Dagger-Hilt**, **Retrofit** и **Navigation Compose**.
+
+> Основано на шаблоне [kotlin-android-mvvm-template](https://github.com/its-me-debk007/kotlin-android-mvvm-template) от [its-me-debk007](https://github.com/its-me-debk007).
+
 ![Language](https://img.shields.io/github/languages/top/its-me-debk007/kotlin-android-mvvm-template?color=B125EA&logo=kotlin&style=social)&nbsp;&nbsp;
 [![Owner](https://img.shields.io/badge/by-its--me--debk007-brightgreen?logo=github&style=social)](https://github.com/its-me-debk007)&nbsp;&nbsp;
 ![License](https://img.shields.io/github/license/its-me-debk007/kotlin-android-mvvm-template.svg?style=social)
 
-# Kotlin Android MVVM Template
+> *"Каждая строка кода должна быть написана один раз и только один раз." — Рон Джеффрис*
 
-A simple+lightweight template for a Jetpack Compose app with Navigation, Retrofit, Dagger-Hilt fully setup for convenience, so you can **focus only on what's important!**
+## Возможности 🎨
 
-> ***"Every line of code should be written once, and only once." - Ron Jeffries***
-
-## Features 🎨
-
-- Project fully in `Jetpack Compose`
-- Jetpack Compose Navigation
-- Retrofit *(Fully setup with a **working** sample API Call)*
-> [!NOTE]
-> for API Call using **ktor**, switch to `ktor` branch
-- MVVM Architecture
-- Kotlin DSL
-- `Gradle Version Catalog` for dependency management
-- `detekt` for code smell analysis - configured for **Jetpack Compose**
-- `Dependabot` *(with a weekly schedule)*
-- `GitHub Actions` CI/CD pipeline to **run detekt lint checks** + **perform unit tests** + **build and upload apk**
-- Coil *(for image loading)*
+- Полностью на **Jetpack Compose**
+- **Navigation Compose** для навигации
+- **Retrofit 3.0.0** с настройкой для работы с API (пример вызова включён)
+- **MVVM-архитектура** с чистой структурой слоёв
+- **Многомодульная структура** (app, core, feature)
+- **Kotlin 2.3.10** + **Kotlin DSL**
+- **Gradle Version Catalog** для управления зависимостями
+- **Dagger-Hilt 2.59.2** для внедрения зависимостей
+- **Kotlinx Serialization 1.10.0** для работы с JSON
+- **Coil 2.7.0** для загрузки изображений
+- **Room 2.8.4** (настроен, готов к использованию)
+- **detekt** для статического анализа кода — настроен для Jetpack Compose
+- **Dependabot** (ежедневные обновления зависимостей)
+- **GitHub Actions CI/CD** — запускает detekt, unit-тесты, собирает и загружает APK
 
 
-## Getting Started 👣
+## Начало работы 👣
+### Требования
 
-- Click on [![Use this template](https://img.shields.io/badge/-Use%20this%20template-499D95?style=for-the-badge)](https://github.com/new?template_name=kotlin-android-mvvm-template&template_owner=its-me-debk007) button to create a new repository from this template
-- Few TODOs are added, such as changing *package name*, *server base url*, *api endpoints*, etc to guide through the project *(just type TODO after pressing SHIFT key twice in Android Studio, to search for the TODOs)*
-- Enable Dependabot in repo settings *(for ref, a [30 sec video](https://www.youtube.com/watch?v=yvXKlDgiGHo))*
+- **Android Studio** (последняя стабильная версия)
+- **JDK 17**
+- **Android SDK** (minSdk 24, compileSdk 36)
+
+### Сборка и запуск
+
+| Команда | Описание |
+|---------|----------|
+| `./gradlew assembleDebug` | Сборка debug APK |
+| `./gradlew assembleRelease` | Сборка release APK |
+| `./gradlew detekt` | Запуск статического анализа |
+| `./gradlew test` | Запуск unit-тестов |
+| `./gradlew clean` | Очистка артефактов сборки |
+
+Для запуска на устройстве/эмуляторе (API 24+):
+```bash
+./gradlew installDebug
+```
 
 
-## Project Structure 🗺️📐🛠️
+## Структура проекта 🗺️📐🛠️
 
-The project includes a single module **`app`**, with following packages:
+Проект использует **многомодульную архитектуру**:
 
-- **`di`:** contains Dagger-Hilt Module
-- **`network`:** includes api service containing api endpoints & type of request
-- **`model`:** contains response data class from the server
-- **`repository`:** contains repository interface & its implementation
-- **`presentation`:** signifies the presentation layer
+### Модули
 
-## Contributing 🤝
+| Модуль | Описание |
+|--------|----------|
+| `:app` | Главный модуль приложения (UI, ViewModels, навигация) |
+| `:core:data` | Слой данных — реализации репозиториев, DI |
+| `:core:domain` | Слой бизнес-логики — модели домена, интерфейсы репозиториев |
+| `:core:database` | Слой базы данных — Room, DAO, entities, DI |
+| `:feature:training_list` | Фича-модуль — список тренировок (в разработке) |
 
-Join us in shaping the future of this project – your contributions are invaluable! Feel free to open a issue or submit a pull request for any bugs/improvements.
+### Пакеты модуля `app`
 
-## License
+```
+app/src/main/java/ru/app/
+├── di/                 # Модули Dagger-Hilt
+├── network/            # API-сервисы (Retrofit)
+├── model/              # Data classes (DTO)
+├── repository/         # Интерфейс и реализация репозитория
+├── presentation/       # UI-слой (Compose, ViewModels)
+│   ├── screen/         # Экраны приложения
+│   ├── ui/theme/       # Тема и стили
+│   └── viewmodel/      # ViewModels
+├── util/               # Утилиты (ApiState и др.)
+├── MainActivity.kt     # Главная Activity
+└── MyApplication.kt    # Application класс с @HiltAndroidApp
+```
 
-Distributed under the MIT License. See `LICENSE` file for more information.
+### Конвенции кода
 
-#### 🌟 If you find value in this project, please consider starring it! Your support keeps it thriving. 🚀
+- **Стиль Kotlin:** официальный (настроен в `gradle.properties`)
+- **Максимальная длина строки:** 120 символов
+- **JVM target:** Java 17
+- **detekt:** настроен с лимитами сложности (CyclomaticComplexMethod: 15, LongMethod: 60 строк)
+
+Запуск detekt перед коммитом:
+```bash
+./gradlew detekt
+```
+
+## CI/CD 🚀
+
+GitHub Actions workflow (`.github/workflows/build_apk.yml`) запускается при каждом пуше в `main`:
+
+1. **detekt** — статический анализ кода
+2. **Unit-тесты** — запуск всех unit-тестов
+3. **Сборка Debug APK** — создание и загрузка артефакта
+
+Отчёты и APK загружаются как артефакты.
+
+## Вклад в проект 🤝
+
+Приветствуется любая помощь! Открывайте issues с багами или предложениями, отправляйте pull request'ы.
+
+Перед отправкой убедитесь, что:
+```bash
+./gradlew detekt && ./gradlew test
+```
+проходят без ошибок.
+
+## Лицензия
+
+Распространяется под лицензией **MIT**. Подробнее в файле `LICENSE`.
+
+#### 🌟 Если проект оказался полезен — поставьте звезду! Ваша поддержка помогает проекту развиваться. 🚀
